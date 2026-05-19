@@ -184,7 +184,7 @@ select option { background: #1a1a1f; }
       <select id="nameSelect" disabled onchange="tryEnable()">
         <option value="">로딩 중...</option>
       </select>
-      <button class="submit-btn" id="submitBtn" disabled onclick="doSubmit()">출석하기</button>
+      <button class="submit-btn" id="submitBtn" onclick="doSubmit()">출석하기</button>
       <div class="special-btns">
         <button class="btn-vacation" onclick="doSubmitSpecial('휴가')">🏖️ 휴가</button>
         <button class="btn-business" onclick="doSubmitSpecial('출장')">✈️ 출장</button>
@@ -273,9 +273,11 @@ function tryEnable() {
 // ── 일반 출석 ─────────────────────────────────────
 function doSubmit() {
   const name = sel.value;
-  if (!name || !myIp) return;
+  if (!name) { alert('이름을 선택해주세요!'); return; }
+  if (!myIp) { alert('IP 확인 중이에요. 잠시 후 다시 시도해주세요!'); return; }
   btn.disabled = true;
   btn.textContent = '기록 중...';
+  // 나머지 동일
 
   fetch(API + '?action=checkIn&name=' + encodeURIComponent(name) + '&ip=' + encodeURIComponent(myIp))
     .then(r => r.json())
