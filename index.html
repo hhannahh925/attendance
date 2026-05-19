@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>출석 체크</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -30,6 +31,7 @@ html, body {
   justify-content: center;
 }
 body { padding: 24px; }
+
 .card {
   width: 100%;
   max-width: 380px;
@@ -38,6 +40,7 @@ body { padding: 24px; }
   border-radius: 20px;
   overflow: hidden;
 }
+
 .card-top {
   padding: 28px 28px 20px;
   border-bottom: 1px solid var(--border);
@@ -59,8 +62,13 @@ body { padding: 24px; }
   line-height: 1;
   margin-bottom: 4px;
 }
-.date-line { font-size: 13px; color: var(--muted); }
+.date-line {
+  font-size: 13px;
+  color: var(--muted);
+}
+
 .card-body { padding: 24px 28px; }
+
 .ip-row {
   display: flex;
   align-items: center;
@@ -79,9 +87,21 @@ body { padding: 24px; }
 }
 .ip-dot.ok { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
 .ip-dot.fail { background: var(--red); }
-.ip-label { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); flex: 1; }
+.ip-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  flex: 1;
+}
 .ip-label span { color: var(--text); }
-label { display: block; font-size: 11px; letter-spacing: .06em; color: var(--muted); margin-bottom: 7px; }
+
+label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
 select {
   width: 100%;
   padding: 12px 14px;
@@ -101,6 +121,7 @@ select {
 }
 select:focus { outline: none; border-color: var(--accent); }
 select option { background: #1a1a1f; }
+
 .submit-btn {
   width: 100%;
   padding: 14px;
@@ -113,41 +134,82 @@ select option { background: #1a1a1f; }
   font-weight: 600;
   cursor: pointer;
   transition: opacity .15s, transform .1s;
+  letter-spacing: .02em;
 }
 .submit-btn:disabled { opacity: .35; cursor: not-allowed; }
 .submit-btn:not(:disabled):hover { opacity: .9; }
 .submit-btn:not(:disabled):active { transform: scale(.98); }
-.result-screen { padding: 32px 28px; text-align: center; display: none; }
-.result-icon { font-size: 48px; margin-bottom: 16px; animation: pop .3s cubic-bezier(.34,1.56,.64,1); }
+
+.result-screen {
+  padding: 32px 28px;
+  text-align: center;
+  display: none;
+}
+.result-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  animation: pop .3s cubic-bezier(.34,1.56,.64,1);
+}
 @keyframes pop { from { transform: scale(0); opacity: 0; } }
 .result-name { font-size: 22px; margin-bottom: 4px; }
-.result-time { font-family: 'IBM Plex Mono', monospace; font-size: 30px; color: var(--accent); margin-bottom: 8px; }
-.result-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 13px; margin-bottom: 24px; }
+.result-time {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 30px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.result-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
 .badge-ok { background: rgba(200,245,66,.12); color: var(--accent); }
 .badge-late { background: rgba(245,200,66,.12); color: var(--yellow); }
 .badge-first { background: rgba(200,245,66,.08); color: var(--accent-dim); font-size: 11px; margin-left: 6px; }
+
 .today-list { margin-top: 8px; text-align: left; }
-.today-item { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.today-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
 .today-item:last-child { border: none; }
 .t-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 .t-name { flex: 1; }
 .t-time { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); }
 .t-late { font-size: 11px; color: var(--yellow); }
-.error-screen { padding: 32px 28px; text-align: center; display: none; }
+
+.error-screen {
+  padding: 32px 28px;
+  text-align: center;
+  display: none;
+}
 .error-icon { font-size: 40px; margin-bottom: 12px; }
 .error-msg { font-size: 15px; color: var(--text); margin-bottom: 6px; }
 .error-sub { font-size: 13px; color: var(--muted); }
 .retry-btn {
-  margin-top: 20px; padding: 10px 24px;
-  background: transparent; border: 1px solid var(--border);
-  border-radius: 8px; color: var(--muted);
-  font-family: 'Gowun Dodum', sans-serif; font-size: 13px; cursor: pointer;
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
 }
 .retry-btn:hover { border-color: var(--accent); color: var(--accent); }
 </style>
 </head>
 <body>
 <div class="card">
+
+  <!-- 메인 폼 -->
   <div id="formView">
     <div class="card-top">
       <div class="lab-tag">연구실 출석 체크</div>
@@ -163,10 +225,17 @@ select option { background: #1a1a1f; }
       <select id="nameSelect" disabled>
         <option value="">로딩 중...</option>
       </select>
-      <button class="submit-btn" id="submitBtn" disabled onclick="submit()">출석하기</button>
-    </div>
+      <button class="submit-btn" id="submitBtn" disabled onclick="submit()">
+        출석하기
+      </button> 
+      <div style="display:flex;gap:8px;margin-top:10px">
+  <button class="submit-btn" style="background:#5b8dd9;flex:1" onclick="submitSpecial('휴가')">🏖️ 휴가</button>
+  <button class="submit-btn" style="background:#9b72cf;flex:1" onclick="submitSpecial('출장')">✈️ 출장</button>
+  </div>
+  </div>
   </div>
 
+  <!-- 완료 화면 -->
   <div class="result-screen" id="resultView">
     <div class="result-icon" id="resultIcon">✅</div>
     <div class="result-name" id="resultName"></div>
@@ -178,29 +247,34 @@ select option { background: #1a1a1f; }
     <div class="today-list" id="todayList"></div>
   </div>
 
+  <!-- 에러 화면 -->
   <div class="error-screen" id="errorView">
     <div class="error-icon" id="errorIcon">📡</div>
     <div class="error-msg" id="errorMsg"></div>
     <div class="error-sub" id="errorSub"></div>
     <button class="retry-btn" onclick="reset()">돌아가기</button>
   </div>
+
 </div>
 
 <script>
-const API = 'https://script.google.com/macros/s/AKfycbyupo2DxxmPn_AkPXFtemSLBvKyJMfMTwSU5qX2osnYuUK_FOUahRn8Df89uuntrc6hmw/exec';
 let myIp = null;
+const API = 'https://script.google.com/macros/s/AKfycbyupo2DxxmPn_AkPXFtemSLBvKyJMfMTwSU5qX2osnYuUK_FOUahRn8Df89uuntrc6hmw/exec';
 const btn = document.getElementById('submitBtn');
 const sel = document.getElementById('nameSelect');
 
+// 시계
 function updateClock() {
   const now = new Date();
-  document.getElementById('clock').textContent = now.toLocaleTimeString('ko-KR', { hour12: false });
-  document.getElementById('dateLabel').textContent = now.toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric', weekday:'long' });
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString('ko-KR', { hour12: false });
+  document.getElementById('dateLabel').textContent =
+    now.toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric', weekday:'long' });
 }
 setInterval(updateClock, 1000);
 updateClock();
 
-// IP 확인
+// IP 가져오기
 fetch('https://api.ipify.org?format=json')
   .then(r => r.json())
   .then(d => {
@@ -233,8 +307,9 @@ fetch(API + '?action=getMembers')
   })
   .catch(() => { sel.innerHTML = '<option value="">로드 실패</option>'; });
 
-sel.addEventListener('change', tryEnable);
-function tryEnable() { btn.disabled = !(myIp && sel.value); }
+function tryEnable() {
+  btn.disabled = !(myIp && sel.value);
+}
 
 function submit() {
   const name = sel.value;
@@ -250,15 +325,22 @@ function submit() {
 
 function showResult(r) {
   document.getElementById('formView').style.display = 'none';
-  document.getElementById('resultView').style.display = 'block';
+  const v = document.getElementById('resultView');
+  v.style.display = 'block';
   document.getElementById('resultIcon').textContent = r.late > 0 ? '⚠️' : '✅';
   document.getElementById('resultName').textContent = r.name + ' 님';
   document.getElementById('resultTime').textContent = r.time;
   const badge = document.getElementById('resultBadge');
-  if (r.late > 0) { badge.textContent = r.late + '분 지각'; badge.className = 'result-badge badge-late'; }
-  else { badge.textContent = '정시 출근'; badge.className = 'result-badge badge-ok'; }
+  if (r.late > 0) {
+    badge.textContent = r.late + '분 지각';
+    badge.className = 'result-badge badge-late';
+  } else {
+    badge.textContent = '정시 출근';
+    badge.className = 'result-badge badge-ok';
+  }
   if (r.isFirst) document.getElementById('firstBadge').style.display = 'inline-block';
 
+  // 오늘 현황
   fetch(API + '?action=getTodaySummary')
     .then(r => r.json())
     .then(list => {
@@ -278,9 +360,15 @@ function showResult(r) {
 
 function showError(r) {
   document.getElementById('formView').style.display = 'none';
-  document.getElementById('errorView').style.display = 'block';
+  const v = document.getElementById('errorView');
+  v.style.display = 'block';
+
   const icons = { ip: '📡', duplicate: '🔁', server: '⚙️' };
-  const subs = { ip: '현재 IP: ' + (myIp || '알 수 없음'), duplicate: '출근 시각: ' + (r.time || ''), server: r.sub || '' };
+  const subs = {
+    ip: '현재 IP: ' + (myIp || '알 수 없음'),
+    duplicate: '출근 시각: ' + (r.time || ''),
+    server: r.sub || ''
+  };
   document.getElementById('errorIcon').textContent = icons[r.reason] || '⚠️';
   document.getElementById('errorMsg').textContent = r.msg;
   document.getElementById('errorSub').textContent = subs[r.reason] || '';
@@ -292,6 +380,29 @@ function reset() {
   btn.disabled = !(myIp && sel.value);
   btn.textContent = '출석하기';
 }
+
+function submitSpecial(type) {
+  const name = sel.value;
+  if (!name) return alert('이름을 선택해주세요!');
+  btn.disabled = true;
+
+  fetch(API + '?action=checkInSpecial&name=' + encodeURIComponent(name) + '&type=' + encodeURIComponent(type))
+    .then(r => r.json())
+    .then(r => { if (r.ok) showSpecialResult(r); else showError(r); })
+    .catch(e => showError({ reason: 'server', msg: '오류 발생', sub: e.message }));
+}
+
+function showSpecialResult(r) {
+  document.getElementById('formView').style.display = 'none';
+  document.getElementById('resultView').style.display = 'block';
+  document.getElementById('resultIcon').textContent = r.type === '휴가' ? '🏖️' : '✈️';
+  document.getElementById('resultName').textContent = r.name + ' 님';
+  document.getElementById('resultTime').textContent = r.type;
+  const badge = document.getElementById('resultBadge');
+  badge.textContent = r.type + ' 처리 완료';
+  badge.className = 'result-badge badge-ok';
+}
+
 </script>
 </body>
 </html>
