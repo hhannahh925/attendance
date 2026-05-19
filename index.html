@@ -277,7 +277,7 @@ function doSubmit() {
   if (!myIp) { alert('IP 확인 중이에요. 잠시 후 다시 시도해주세요!'); return; }
   btn.disabled = true;
   btn.textContent = '기록 중...';
-  // 나머지 동일
+
 
   fetch(API + '?action=checkIn&name=' + encodeURIComponent(name) + '&ip=' + encodeURIComponent(myIp))
     .then(r => r.json())
