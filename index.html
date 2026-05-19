@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>출석 체크</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -31,7 +30,6 @@ html, body {
   justify-content: center;
 }
 body { padding: 24px; }
-
 .card {
   width: 100%;
   max-width: 380px;
@@ -40,7 +38,6 @@ body { padding: 24px; }
   border-radius: 20px;
   overflow: hidden;
 }
-
 .card-top {
   padding: 28px 28px 20px;
   border-bottom: 1px solid var(--border);
@@ -62,13 +59,8 @@ body { padding: 24px; }
   line-height: 1;
   margin-bottom: 4px;
 }
-.date-line {
-  font-size: 13px;
-  color: var(--muted);
-}
-
+.date-line { font-size: 13px; color: var(--muted); }
 .card-body { padding: 24px 28px; }
-
 .ip-row {
   display: flex;
   align-items: center;
@@ -85,23 +77,11 @@ body { padding: 24px; }
   flex-shrink: 0;
   transition: background .3s;
 }
-.ip-dot.ok { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
-.ip-dot.fail { background: var(--red); }
-.ip-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  color: var(--muted);
-  flex: 1;
-}
+.ip-dot.ok  { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+.ip-dot.fail{ background: var(--red); }
+.ip-label { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); flex: 1; }
 .ip-label span { color: var(--text); }
-
-label {
-  display: block;
-  font-size: 11px;
-  letter-spacing: .06em;
-  color: var(--muted);
-  margin-bottom: 7px;
-}
+label { display: block; font-size: 11px; letter-spacing: .06em; color: var(--muted); margin-bottom: 7px; }
 select {
   width: 100%;
   padding: 12px 14px;
@@ -121,7 +101,6 @@ select {
 }
 select:focus { outline: none; border-color: var(--accent); }
 select option { background: #1a1a1f; }
-
 .submit-btn {
   width: 100%;
   padding: 14px;
@@ -139,69 +118,49 @@ select option { background: #1a1a1f; }
 .submit-btn:disabled { opacity: .35; cursor: not-allowed; }
 .submit-btn:not(:disabled):hover { opacity: .9; }
 .submit-btn:not(:disabled):active { transform: scale(.98); }
-
-.result-screen {
-  padding: 32px 28px;
-  text-align: center;
-  display: none;
+.special-btns { display: flex; gap: 8px; margin-top: 10px; }
+.special-btns button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .15s, transform .1s;
+  color: #fff;
 }
-.result-icon {
-  font-size: 48px;
-  margin-bottom: 16px;
-  animation: pop .3s cubic-bezier(.34,1.56,.64,1);
-}
+.special-btns button:hover  { opacity: .9; }
+.special-btns button:active { transform: scale(.98); }
+.btn-vacation  { background: #5b8dd9; }
+.btn-business  { background: #9b72cf; }
+.result-screen { padding: 32px 28px; text-align: center; display: none; }
+.result-icon { font-size: 48px; margin-bottom: 16px; animation: pop .3s cubic-bezier(.34,1.56,.64,1); }
 @keyframes pop { from { transform: scale(0); opacity: 0; } }
 .result-name { font-size: 22px; margin-bottom: 4px; }
-.result-time {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 30px;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-.result-badge {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  margin-bottom: 24px;
-}
-.badge-ok { background: rgba(200,245,66,.12); color: var(--accent); }
+.result-time { font-family: 'IBM Plex Mono', monospace; font-size: 30px; color: var(--accent); margin-bottom: 8px; }
+.result-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 13px; margin-bottom: 24px; }
+.badge-ok   { background: rgba(200,245,66,.12); color: var(--accent); }
 .badge-late { background: rgba(245,200,66,.12); color: var(--yellow); }
-.badge-first { background: rgba(200,245,66,.08); color: var(--accent-dim); font-size: 11px; margin-left: 6px; }
-
+.badge-first{ background: rgba(200,245,66,.08); color: var(--accent-dim); font-size: 11px; margin-left: 6px; }
 .today-list { margin-top: 8px; text-align: left; }
-.today-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 13px;
-}
+.today-item { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
 .today-item:last-child { border: none; }
-.t-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.t-dot  { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 .t-name { flex: 1; }
 .t-time { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--muted); }
 .t-late { font-size: 11px; color: var(--yellow); }
-
-.error-screen {
-  padding: 32px 28px;
-  text-align: center;
-  display: none;
-}
+.t-special { font-size: 11px; color: #9b72cf; }
+.error-screen { padding: 32px 28px; text-align: center; display: none; }
 .error-icon { font-size: 40px; margin-bottom: 12px; }
-.error-msg { font-size: 15px; color: var(--text); margin-bottom: 6px; }
-.error-sub { font-size: 13px; color: var(--muted); }
+.error-msg  { font-size: 15px; color: var(--text); margin-bottom: 6px; }
+.error-sub  { font-size: 13px; color: var(--muted); }
 .retry-btn {
-  margin-top: 20px;
-  padding: 10px 24px;
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--muted);
-  font-family: 'Gowun Dodum', sans-serif;
-  font-size: 13px;
-  cursor: pointer;
+  margin-top: 20px; padding: 10px 24px;
+  background: transparent; border: 1px solid var(--border);
+  border-radius: 8px; color: var(--muted);
+  font-family: 'Gowun Dodum', sans-serif; font-size: 13px; cursor: pointer;
 }
 .retry-btn:hover { border-color: var(--accent); color: var(--accent); }
 </style>
@@ -222,17 +181,15 @@ select option { background: #1a1a1f; }
         <div class="ip-label">IP: <span id="ipText">확인 중...</span></div>
       </div>
       <label>이름을 선택하세요</label>
-      <select id="nameSelect" disabled>
+      <select id="nameSelect" disabled onchange="tryEnable()">
         <option value="">로딩 중...</option>
       </select>
-      <button class="submit-btn" id="submitBtn" disabled onclick="submit()">
-        출석하기
-      </button> 
-      <div style="display:flex;gap:8px;margin-top:10px">
-  <button class="submit-btn" style="background:#5b8dd9;flex:1" onclick="submitSpecial('휴가')">🏖️ 휴가</button>
-  <button class="submit-btn" style="background:#9b72cf;flex:1" onclick="submitSpecial('출장')">✈️ 출장</button>
-  </div>
-  </div>
+      <button class="submit-btn" id="submitBtn" disabled onclick="doSubmit()">출석하기</button>
+      <div class="special-btns">
+        <button class="btn-vacation" onclick="doSubmitSpecial('휴가')">🏖️ 휴가</button>
+        <button class="btn-business" onclick="doSubmitSpecial('출장')">✈️ 출장</button>
+      </div>
+    </div>
   </div>
 
   <!-- 완료 화면 -->
@@ -250,20 +207,21 @@ select option { background: #1a1a1f; }
   <!-- 에러 화면 -->
   <div class="error-screen" id="errorView">
     <div class="error-icon" id="errorIcon">📡</div>
-    <div class="error-msg" id="errorMsg"></div>
-    <div class="error-sub" id="errorSub"></div>
-    <button class="retry-btn" onclick="reset()">돌아가기</button>
+    <div class="error-msg"  id="errorMsg"></div>
+    <div class="error-sub"  id="errorSub"></div>
+    <button class="retry-btn" onclick="doReset()">돌아가기</button>
   </div>
 
 </div>
 
 <script>
-let myIp = null;
 const API = 'https://script.google.com/macros/s/AKfycbyupo2DxxmPn_AkPXFtemSLBvKyJMfMTwSU5qX2osnYuUK_FOUahRn8Df89uuntrc6hmw/exec';
+let myIp = null;
+
 const btn = document.getElementById('submitBtn');
 const sel = document.getElementById('nameSelect');
 
-// 시계
+// ── 시계 ──────────────────────────────────────────
 function updateClock() {
   const now = new Date();
   document.getElementById('clock').textContent =
@@ -274,7 +232,7 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// IP 가져오기
+// ── IP ────────────────────────────────────────────
 fetch('https://api.ipify.org?format=json')
   .then(r => r.json())
   .then(d => {
@@ -288,7 +246,7 @@ fetch('https://api.ipify.org?format=json')
     document.getElementById('ipDot').className = 'ip-dot fail';
   });
 
-// 멤버 불러오기
+// ── 멤버 ──────────────────────────────────────────
 fetch(API + '?action=getMembers')
   .then(r => r.json())
   .then(r => {
@@ -307,11 +265,13 @@ fetch(API + '?action=getMembers')
   })
   .catch(() => { sel.innerHTML = '<option value="">로드 실패</option>'; });
 
+// ── 출석 버튼 활성화 ──────────────────────────────
 function tryEnable() {
   btn.disabled = !(myIp && sel.value);
 }
 
-function submit() {
+// ── 일반 출석 ─────────────────────────────────────
+function doSubmit() {
   const name = sel.value;
   if (!name || !myIp) return;
   btn.disabled = true;
@@ -320,27 +280,32 @@ function submit() {
   fetch(API + '?action=checkIn&name=' + encodeURIComponent(name) + '&ip=' + encodeURIComponent(myIp))
     .then(r => r.json())
     .then(r => { if (r.ok) showResult(r); else showError(r); })
-    .catch(e => showError({ reason: 'server', msg: '서버 오류가 발생했어요.', sub: e.message }));
+    .catch(() => showError({ reason: 'server', msg: '서버 오류가 발생했어요.' }));
 }
 
+// ── 휴가 / 출장 ───────────────────────────────────
+function doSubmitSpecial(type) {
+  const name = sel.value;
+  if (!name) { alert('이름을 선택해주세요!'); return; }
+
+  fetch(API + '?action=checkInSpecial&name=' + encodeURIComponent(name) + '&type=' + encodeURIComponent(type))
+    .then(r => r.json())
+    .then(r => { if (r.ok) showSpecialResult(r); else showError(r); })
+    .catch(() => showError({ reason: 'server', msg: '서버 오류가 발생했어요.' }));
+}
+
+// ── 완료 화면 (일반) ──────────────────────────────
 function showResult(r) {
   document.getElementById('formView').style.display = 'none';
-  const v = document.getElementById('resultView');
-  v.style.display = 'block';
+  document.getElementById('resultView').style.display = 'block';
   document.getElementById('resultIcon').textContent = r.late > 0 ? '⚠️' : '✅';
   document.getElementById('resultName').textContent = r.name + ' 님';
   document.getElementById('resultTime').textContent = r.time;
   const badge = document.getElementById('resultBadge');
-  if (r.late > 0) {
-    badge.textContent = r.late + '분 지각';
-    badge.className = 'result-badge badge-late';
-  } else {
-    badge.textContent = '정시 출근';
-    badge.className = 'result-badge badge-ok';
-  }
+  if (r.late > 0) { badge.textContent = r.late + '분 지각'; badge.className = 'result-badge badge-late'; }
+  else            { badge.textContent = '정시 출근';         badge.className = 'result-badge badge-ok'; }
   if (r.isFirst) document.getElementById('firstBadge').style.display = 'inline-block';
 
-  // 오늘 현황
   fetch(API + '?action=getTodaySummary')
     .then(r => r.json())
     .then(list => {
@@ -348,50 +313,19 @@ function showResult(r) {
       if (!list.length) return;
       el.innerHTML = '<div style="font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:.06em">오늘 출석 현황</div>';
       list.forEach(item => {
+        const isSpecial = item.status === '휴가' || item.status === '출장';
         el.innerHTML += `<div class="today-item">
           <div class="t-dot"></div>
           <div class="t-name">${item.name}</div>
-          <div class="t-time">${item.time}</div>
-          ${item.lateMin > 0 ? `<div class="t-late">${item.lateMin}분 지각</div>` : ''}
+          <div class="t-time">${isSpecial ? '' : item.time}</div>
+          ${isSpecial ? `<div class="t-special">${item.status}</div>` :
+            item.lateMin > 0 ? `<div class="t-late">${item.lateMin}분 지각</div>` : ''}
         </div>`;
       });
     });
 }
 
-function showError(r) {
-  document.getElementById('formView').style.display = 'none';
-  const v = document.getElementById('errorView');
-  v.style.display = 'block';
-
-  const icons = { ip: '📡', duplicate: '🔁', server: '⚙️' };
-  const subs = {
-    ip: '현재 IP: ' + (myIp || '알 수 없음'),
-    duplicate: '출근 시각: ' + (r.time || ''),
-    server: r.sub || ''
-  };
-  document.getElementById('errorIcon').textContent = icons[r.reason] || '⚠️';
-  document.getElementById('errorMsg').textContent = r.msg;
-  document.getElementById('errorSub').textContent = subs[r.reason] || '';
-}
-
-function reset() {
-  document.getElementById('errorView').style.display = 'none';
-  document.getElementById('formView').style.display = 'block';
-  btn.disabled = !(myIp && sel.value);
-  btn.textContent = '출석하기';
-}
-
-function submitSpecial(type) {
-  const name = sel.value;
-  if (!name) return alert('이름을 선택해주세요!');
-  btn.disabled = true;
-
-  fetch(API + '?action=checkInSpecial&name=' + encodeURIComponent(name) + '&type=' + encodeURIComponent(type))
-    .then(r => r.json())
-    .then(r => { if (r.ok) showSpecialResult(r); else showError(r); })
-    .catch(e => showError({ reason: 'server', msg: '오류 발생', sub: e.message }));
-}
-
+// ── 완료 화면 (휴가/출장) ─────────────────────────
 function showSpecialResult(r) {
   document.getElementById('formView').style.display = 'none';
   document.getElementById('resultView').style.display = 'block';
@@ -403,6 +337,25 @@ function showSpecialResult(r) {
   badge.className = 'result-badge badge-ok';
 }
 
+// ── 에러 화면 ─────────────────────────────────────
+function showError(r) {
+  document.getElementById('formView').style.display = 'none';
+  document.getElementById('errorView').style.display = 'block';
+  const icons = { ip: '📡', duplicate: '🔁', server: '⚙️', invalid: '⚠️' };
+  const subs  = { ip: '현재 IP: ' + (myIp || '알 수 없음'), duplicate: '오늘 이미 기록되어 있어요.' };
+  document.getElementById('errorIcon').textContent = icons[r.reason] || '⚠️';
+  document.getElementById('errorMsg').textContent  = r.msg;
+  document.getElementById('errorSub').textContent  = subs[r.reason] || '';
+}
+
+// ── 돌아가기 ──────────────────────────────────────
+function doReset() {
+  document.getElementById('errorView').style.display = 'none';
+  document.getElementById('resultView').style.display = 'none';
+  document.getElementById('formView').style.display = 'block';
+  btn.disabled = !(myIp && sel.value);
+  btn.textContent = '출석하기';
+}
 </script>
 </body>
 </html>
